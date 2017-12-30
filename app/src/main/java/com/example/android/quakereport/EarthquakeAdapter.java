@@ -49,19 +49,19 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeReport> {
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.location_name);
         // Get the location rom the current EarthquakeReport object and
         // set this text on the name TextView
-        nameTextView.setText(currentEarthquakeReport.getLocationName());
+        nameTextView.setText(currentEarthquakeReport.getmLocationName());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
         TextView numberTextView = (TextView) listItemView.findViewById(R.id.mag_number);
         // Get the magnitude number from the current EarthquakeReport object and
         // set this text on the number TextView
-        numberTextView.setText(currentEarthquakeReport.getMagNumber());
+        numberTextView.setText(currentEarthquakeReport.getmMagNumber());
 
         // Find the TextView in the list_item.xml layout with the ID date
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date);
         // Get the date from the current EarthquakeReport object and
         // set this text on the number TextView
-        dateTextView.setText(currentEarthquakeReport.getDate());
+        dateTextView.setText(currentEarthquakeReport.getmDate());
 
          // Return the whole list item layout
         // so that it can be shown in the ListView
