@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -34,21 +36,19 @@ public final class QueryUtils {
     }
 
     /**
-     * Return a list of {@link EarthquakeReport} objects that has been built up from
+     * Return a list of {@link Earthquake} objects that has been built up from
      * parsing a JSON response.
      */
-    public static ArrayList<EarthquakeReport> extractEarthquakes() {
+    public static ArrayList<Earthquake> extractEarthquakes() {
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        ArrayList<EarthquakeReport> earthquakes = new ArrayList<>();
+        ArrayList<Earthquake> earthquakes = new ArrayList<>();
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
 
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
             JSONObject baseJsonResponse = new JSONObject(SAMPLE_JSON_RESPONSE);
             JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
 
@@ -58,10 +58,16 @@ public final class QueryUtils {
 
                 String magnitude = properties.getString("mag");
                 String location = properties.getString("place");
-                String time = properties.getString("time");
+                // Extract the value for the key called "time"
+                Long time = properties.getLong("time");
 
-                EarthquakeReport earthquake = new EarthquakeReport(magnitude, location, time);
+                Earthquake earthquake = new Earthquake(magnitude, location, time);
                 earthquakes.add(earthquake);
+
+                Date dateObject = new Date(time);
+
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+                String dateToDisplay = dateFormatter.format(dateObject);
             }
 
         } catch (JSONException e) {

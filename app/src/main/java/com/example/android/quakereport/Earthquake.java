@@ -4,7 +4,7 @@ package com.example.android.quakereport;
  * Created by Russ on 12/30/2017.
  */
 
-public class EarthquakeReport {
+public class Earthquake {
     // Name of the Earthquake location
     private String mLocationName;
 
@@ -15,13 +15,13 @@ public class EarthquakeReport {
     private String mDate;
 
     /*
-    * Create a new EarthquakeReport object.
+    * Create a new Earthquake object.
     *
     * @param vLocation is the location of the Earthquake
     * @param vMag is the Magnitude of the Earthquake
     * @param vDate is the date when the earthquake occurred
     * */
-    public EarthquakeReport(String vMag, String vLocation, String vDate)
+    public Earthquake(String vMag, String vLocation, String vDate)
     {
         mMagNumber = vMag;
         mLocationName = vLocation;
