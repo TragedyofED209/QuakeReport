@@ -1,53 +1,56 @@
 package com.example.android.quakereport;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Russ on 12/30/2017.
  */
 
 public class Earthquake {
     // Name of the Earthquake location
-    private String mLocationName;
+    private String mLocation;
 
     // Earthquake magnitude
-    private String mMagNumber;
+    private String mMagnitude;
 
-    // When the earthquake occurred
-    private String mDate;
+    // Time of the Earthquake
+    private Long mTimeInMilliseconds;
 
-    /*
-    * Create a new Earthquake object.
-    *
-    * @param vLocation is the location of the Earthquake
-    * @param vMag is the Magnitude of the Earthquake
-    * @param vDate is the date when the earthquake occurred
-    * */
-    public Earthquake(String vMag, String vLocation, String vDate)
+    /**
+     * Constructs a new {@link Earthquake} object.
+     *
+     * @param magnitude is the magnitude (size) of the earthquake
+     * @param location is the city location of the earthquake
+     * @param timeInMilliseconds is the time in milliseconds (from the Epoch) when the
+     *  earthquake happened
+     */
+    public Earthquake(String magnitude, String location, Long timeInMilliseconds)
     {
-        mMagNumber = vMag;
-        mLocationName = vLocation;
-        mDate = vDate;
+        mMagnitude = magnitude;
+        mLocation = location;
+        mTimeInMilliseconds = timeInMilliseconds;
     }
 
     /**
      * Get the location of the earthquake
      */
-    public String getmLocationName() {
-        return mLocationName;
+    public String getLocation() {
+        return mLocation;
     }
 
     /**
      * Get the Magnitude number
      */
-    public String getmMagNumber() {
-        return mMagNumber;
+    public String getMagnitude() {
+        return mMagnitude;
     }
 
     /**
      * Get the date when the earthquake occurred
      */
-    public String getmDate() {
-        return mDate;
+    public Long getTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
-
 
 }

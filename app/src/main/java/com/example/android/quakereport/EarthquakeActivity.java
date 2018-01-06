@@ -21,6 +21,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+
 public class EarthquakeActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();

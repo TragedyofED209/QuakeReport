@@ -53,8 +53,8 @@ public final class QueryUtils {
             JSONArray earthquakeArray = baseJsonResponse.getJSONArray("features");
 
             for (int i = 0; i < earthquakeArray.length(); i++) {
-                JSONObject currentEarhquake = earthquakeArray.getJSONObject(i);
-                JSONObject properties = currentEarhquake.getJSONObject("properties");
+                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
+                JSONObject properties = currentEarthquake.getJSONObject("properties");
 
                 String magnitude = properties.getString("mag");
                 String location = properties.getString("place");
@@ -64,10 +64,6 @@ public final class QueryUtils {
                 Earthquake earthquake = new Earthquake(magnitude, location, time);
                 earthquakes.add(earthquake);
 
-                Date dateObject = new Date(time);
-
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
-                String dateToDisplay = dateFormatter.format(dateObject);
             }
 
         } catch (JSONException e) {
