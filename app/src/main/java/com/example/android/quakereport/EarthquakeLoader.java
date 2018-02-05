@@ -2,7 +2,7 @@ package com.example.android.quakereport;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import com.example.android.quakereport.Earthquake;
+
 import java.util.List;
 
 /**
@@ -26,6 +26,11 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
     public EarthquakeLoader(Context context, String url) {
         super(context);
         mUrl = url;
+    }
+
+    @Override
+    protected void onStartLoading(){
+        forceLoad();
     }
 
     /**
