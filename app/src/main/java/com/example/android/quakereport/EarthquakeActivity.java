@@ -25,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -54,10 +55,17 @@ public class EarthquakeActivity extends AppCompatActivity
      */
     private EarthquakeAdapter mAdapter;
 
-    /** TextView that is displayed when the list is empty */
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyStateTextView;
 
-   @Override
+    /**
+     * ProgressBar view when app is loading
+     */
+    private ProgressBar mProgressBarView;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
@@ -65,8 +73,8 @@ public class EarthquakeActivity extends AppCompatActivity
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
 
-       mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
-       earthquakeListView.setEmptyView(mEmptyStateTextView);
+        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
 
         // Create a new adapter that takes an empty list of earthquakes as input
         mAdapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());
@@ -102,6 +110,7 @@ public class EarthquakeActivity extends AppCompatActivity
         // because this activity implements the LoaderCallbacks interface).
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
     }
+
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
@@ -110,7 +119,7 @@ public class EarthquakeActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
-       //Set empty state text to display "No earthquakes found."
+        //Set empty state text to display "No earthquakes found."
         mEmptyStateTextView.setText(R.string.no_earthquakes);
 
         // Clear the adapter of previous earthquake data
@@ -121,6 +130,8 @@ public class EarthquakeActivity extends AppCompatActivity
         if (earthquakes != null && !earthquakes.isEmpty()) {
             mAdapter.addAll(earthquakes);
         }
+        mProgressBarView = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgressBarView.setVisibility(View.GONE);
     }
 
     @Override
