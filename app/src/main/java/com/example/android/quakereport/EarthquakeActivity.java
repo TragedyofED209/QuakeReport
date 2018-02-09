@@ -143,6 +143,10 @@ public class EarthquakeActivity extends AppCompatActivity
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String minMagnitude = sharedPrefs.getString(getString(R.string.settings_min_magnitude_key),
                 getString(R.string.settings_min_magnitude_default));
+
+        String orderBy = sharedPrefs.getString(getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default));
+
         Uri baseUri = Uri.parse(USGS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
